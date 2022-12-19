@@ -43,7 +43,7 @@
 
                                                 <td>
                                                     <div class="table-image">
-                                                        <img src="{{ asset('assets') }}/images/product/1.png"
+                                                        <img src="{{ asset('uploads/category_images') }}/{{ $category->category_image }}"
                                                             class="img-fluid" alt="">
                                                     </div>
                                                 </td>
@@ -125,7 +125,7 @@
 
                                                 <td>
                                                     <div class="table-image">
-                                                        <img src="{{ asset('assets') }}/images/product/1.png"
+                                                        <img src="{{ asset('uploads/category_images') }}/{{ $category->category_image }}"
                                                             class="img-fluid" alt="">
                                                     </div>
                                                 </td>

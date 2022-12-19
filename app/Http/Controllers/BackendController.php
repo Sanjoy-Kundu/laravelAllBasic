@@ -12,7 +12,8 @@ class BackendController extends Controller
     }
 
     function dashboard(){
-        return view('dashboard');
+        $all_categories = Category::latest()->get();
+        return view('dashboard', compact('all_categories'));
     }
 
     function category(){

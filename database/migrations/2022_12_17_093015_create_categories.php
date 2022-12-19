@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name', 50);
+            $table->string('category_name', 50)->unique();
             $table->longText('category_description');
             $table->string('slug', 50);
-            $table->string('category_image', 100)->unique()->default('category_default.jpg');
+            $table->string('category_image', 100)->default('category_default.jpg');
             $table->timestamps();
             $table->softDeletes();
         });

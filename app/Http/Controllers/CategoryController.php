@@ -41,19 +41,26 @@ class CategoryController extends Controller
                 //image upload start
                 $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
                 $imagePathName = "uploads/category_images/".$imageName;
-                Image::make($request->file('category_image'))->save($imagePathName);
-                //image upload end
+               /*  Image::make($request->file('category_image'))->save($imagePathName);
+               akdom last ee
+                    // draw transparent text
+                        $img->text('foo', 0, 0, function($font) {
+                            $font->color([255, 255, 255, 0.5]);
+                        });
+               */
 
+            //watermark dewar jonno draw transparent text
+            Image::make($request->file('category_image'))->text('Sanjoy Website', 0, 0, function($font) {
+                $font->color([255, 255, 255, 0.5]);
+            })->save($imagePathName);
+
+
+                //image upload end
                 //database start
                 Category::find($category_image_id)->update([
                     'category_image' =>$imageName
                 ]);
-                echo 'done';
-                //database end
             }
-            //checking image end
-die();
-
     return back()->withSuccess('Category Insert Successfully');
     }
 

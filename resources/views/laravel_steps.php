@@ -313,6 +313,56 @@ How to make controller :
                     $categrory_id = Category::insertGetId(...)
                     and     if($request -> hasFile() er moddey ) echo $category_id;  kore dekbo id number koto .
 
+                    akhon update korbo
+                    Categoy::find($$category_image_id)->update([
+                        'table_name' => ki update korbo $imageName
+                        'category_image' => $imageName
+                    ]);
+
+                    Next category Model e giye category_image (table name) add kore dibo
+
+
+
+
+
+
+
+
+
+                                                    $slug = Str::slug($request->category_name, '-');
+                                                    $category_image_id = Category::insertGetId($request->except('_token') + [
+                                                        'slug' => $slug,
+                                                        'created_at' => Carbon::now()]);
+
+
+                                                            //checking image start
+                                                            if($request->hasFile('category_image')){
+                                                                //image upload start
+                                                                $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
+                                                                $imagePathName = "uploads/category_images/".$imageName;
+                                                                Image::make($request->file('category_image'))->save($imagePathName);
+                                                                //image upload end
+
+                                                                //database start
+                                                                Category::find($category_image_id)->update([
+                                                                    'category_image' =>$imageName
+                                                                ]);
+                                                                echo 'done';
+                                                                //database end
+                                                            }
+                                                            //checking image end
+                                                die();
+
+                                                    return back()->withSuccess('Category Insert Successfully');
+                                                    }
+
+
+
+
+
+                        Image dekhnor jonno
+<img src="{{ asset('uploads/category_images') }}/{{ $category->category_image }}"
+                                                            class="img-fluid" alt="">
  ===============================HOW TO USES THIRD PARTY END=========================
 
 

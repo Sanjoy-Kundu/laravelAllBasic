@@ -18,7 +18,7 @@
                                     @if (session('success'))
                                         <div class="alert alert-success">{{ session('success') }}</div>
                                     @endif
-                                    <p>{{ $editCategoryInfo }}</p>
+                                    {{--   <p>{{ $editCategoryInfo }}</p> --}}
                                     <form class="theme-form theme-form-2" method="POST"
                                         action="{{ url('category/update') }}/{{ $editCategoryInfo->id }}">
                                         @csrf
