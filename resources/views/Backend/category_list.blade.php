@@ -67,9 +67,12 @@
                                                         </li>
 
                                                         <li>
-                                                            <a href="{{ url('category/delete') }}/{{ $category->id }}">
+                                                            <button class="btn btn-danger category_delete_btn"
+                                                                value="{{ url('category/delete') }}/{{ $category->id }}"><i
+                                                                    class="ri-delete-bin-line"></i></button>
+                                                            {{--    <a href="{{ url('category/delete') }}/{{ $category->id }}">
                                                                 <i class="ri-delete-bin-line"></i>
-                                                            </a>
+                                                            </a> --}}
                                                         </li>
                                                     </ul>
                                                 </td>
@@ -260,4 +263,29 @@
         </div>
     </div>
     <!-- Delete Modal Box End -->
+@endsection
+@section('sweetalert_script')
+    <script>
+        //category_delete_btn
+        $(document).ready(function() {
+            //code
+            $('.category_delete_btn').click(function() {
+
+                var link = $(this).val();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = link;
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

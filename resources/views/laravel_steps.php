@@ -380,7 +380,7 @@ How to make controller :
 
 
                 /*
-                =======================Laravel image genaretor ===================================
+                =======================Laravel image genaretor start===================================
                 Just ami login korbo amar name er upor base kore image toyri hobe .
                 seita amra korbo laravolt pacage er maddhome
 
@@ -391,12 +391,78 @@ How to make controller :
                 v. command ==> php artisan vendor:publish --provider="Laravolt\Avatar\ServiceProvider"
 
                 vi. <img src="{{ Avatar::create('Joko Widodo')->toBase64() }}" /> to ===>  src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" />
+   =======================Laravel image genaretor  end===================================
 
 
 
-            
 
 
+
+
+
+
+
+
+   =====================Adding Sweet alert ====================================
+1. google ===> sweet alert.com ==> <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> copy kore amr page e anbo
+
+2. sweet alert er page thke link er niche script er moddey
+    <script>
+        Swal.fire(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+        )
+    </script>
+    code copy paste kore dekbo je kaj hoitece kina . link thik kore bosale obbosoi kaj korbe .
+
+    3. amra link er niche @yield('sweetalert_script) likbo akhon je page sweet alert bosate cai sei page e jabo .
+
+    4. sei page er akebare niche
+     @section('sweetalert_script')
+     testing er jonno
+         <script>
+        Swal.fire(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+        )
+    </script>
+    likhe dekbo
+    @endsection         likbo
+
+    5. jekhane delete icon ace seita comment kore akta button nibo and seitar moddey sweet alert impliment korar chesta korbo
+        <button><i class = 'btn btn-danger category_delete_btn'></button>
+
+       steps-1  button er akta class name dibo and seitake sweet alert e dhorbo
+
+       steps-02  niche js code likbo
+            $ (document).ready(function(){
+               //code likbo
+            })
+
+        steps-03 ki code likbo
+            seita hoitece $ (button class name).click() koro, click korle akta alert dekhabe
+                $ (.category_delete_btn).click(function(){    button class name == $category_delete_btn
+                    alert('hello');
+                               })
+
+
+        steps-04 akon amra alert er poriborte sweet alert er code use korbo
+
+        steps -05) akhon amke akta link ee hit korte hobe delete korar jonno tai age link toiri korte hobe.
+            amader anchor tag e jei link ace sei link ke amra amder button er value te set kore dibo and anchor kr remore korbo.
+
+        steps-06) akhon amder kaj hoitece je button e click korci sei button er value dhorte hobe value dhorbo js er moddey
+        link dhorar jonno
+        var link = $(this).val(); jake click korteco tar val take dhoro
+
+        and bole dibo
+        widow.location.href = link;
+        taile amr sweet alert er kaj ses
+
+
+=========================Adding sweet alert end =======================
 
 
 

@@ -452,6 +452,10 @@
 
     <!-- Theme js -->
     <script src="{{ asset('assets') }}/js/script.js"></script>
+
+    <!------Sweeet Alert---------->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @yield('sweetalert_script')
 </body>
 
 </html>
