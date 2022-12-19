@@ -6,12 +6,16 @@ use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class CategoryController extends Controller
 {
 
 
     function insert(Request $request){
+
+
+
 
         $request->validate([
            'category_name' => 'required |max:35',
@@ -24,20 +28,31 @@ class CategoryController extends Controller
     ]);
 
 
+
+
     $slug = Str::slug($request->category_name, '-');
-    Category::insert($request->except('_token') + [
+    $category_image_id = Category::insertGetId($request->except('_token') + [
         'slug' => $slug,
         'created_at' => Carbon::now()]);
 
 
-        //checking image start
+              //checking image start
+              if($request->hasFile('category_image')){
+                //image upload start
+                $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
+                $imagePathName = "uploads/category_images/".$imageName;
+                Image::make($request->file('category_image'))->save($imagePathName);
+                //image upload end
 
-    /*     if($request->hasFile('category_image')){
-            echo "image ace";
-        }else{
-            echo "image nai";
-        } */
-        //checking image end
+                //database start
+                Category::find($category_image_id)->update([
+                    'category_image' =>$imageName
+                ]);
+                echo 'done';
+                //database end
+            }
+            //checking image end
+die();
 
     return back()->withSuccess('Category Insert Successfully');
     }

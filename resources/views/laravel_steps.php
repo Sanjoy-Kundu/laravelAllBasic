@@ -252,6 +252,71 @@ How to make controller :
 
 
 
+===============================HOW TO USES THIRD PARTY START=========================
+            1. At first www.interventon.io ==> Uses_overview ==>
+            Save an image in filesystem ==>  if condion er moddey Image::make('foo.jpg')->resize(300, 200)->save('bar.jpg'); bosabo
+
+
+        2.
+            if($request->hasFile('category_image')){
+                echo "image ace";
+                return $request->file('category_image');
+            }else{
+                echo "image nai";
+            }
+
+            jodi bole image ace taile  Image::make('foo.jpg')->resize(300, 200)->save('bar.jpg');  bosabo and resize kete dibo
+
+        3.   if($request->hasFile('category_image')){
+                echo "image ace";
+                return $request->file('category_image'); ==>image name
+
+                 Image::make('foo.jpg')->resize(300, 200)->save('bar.jpg');
+                 Image::make($request->file('category_image'))->save('sanjjoy.jpg');
+                 Image::make($request->file('category_image'))->save('uploads/category_images/sanjoy.jpg');
+            }
+
+        4. dewar por dekbo je image er niche lal dag asche aita dur koranor jonno
+        Basic Usage==>  use Intervention\Image\ImageManagerStatic as Image; likbo
+
+          taile dekbo je amr sanjoy.jpg name akta image asche public folder er moddey . akhon amy name generate korte hobe.
+
+
+          5.Name generate
+          Name generate korar jonno age photo path ke copy kore photo_path name akta variable e raklam
+
+          $pathName = 'uploads/category_images/sanjoy.jpg'
+          last  e je sanjoy.jpg ace aitake dynamic korbo tar jonno
+          $imageNmae = $request->file('category_image)->extension().      extension ke nilam ;
+          $imageName = ."."$request->file('category_image)->extension();   extension er sather .nilam
+          $imageName  = Str::random(20)."."$request->file('category_image)->extension(); 20 digit er name genatet korlam ;
+          $imageName = Str::lower(Str::random(20)."."$request->file('category_image)->extension()); lower case e rupantor korlam
+
+               //checking image start
+              if($request->hasFile('category_image')){
+
+                $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
+                $imagePathName = "uploads/category_images/".$imageName;
+                Image::make($request->file('category_image'))->save($imagePathName);
+
+            }
+
+            die();
+
+
+
+
+            6. ==================database e update korbo ==============
+            step -01
+                    database e update korar jonno  Category::insert ==> insert er por Category::insetGetId() diye dibo and aitake ata variable ee dibo
+
+                    $categrory_id = Category::insertGetId(...)
+                    and     if($request -> hasFile() er moddey ) echo $category_id;  kore dekbo id number koto .
+
+ ===============================HOW TO USES THIRD PARTY END=========================
+
+
+
 
 
 13.========================================Category Image Adding System  End================================
