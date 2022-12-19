@@ -364,11 +364,6 @@ How to make controller :
 <img src="{{ asset('uploads/category_images') }}/{{ $category->category_image }}"
                                                             class="img-fluid" alt="">
  ===============================HOW TO USES THIRD PARTY END=========================
-
-
-
-
-
 13.========================================Category Image Adding System  End================================
 
 
@@ -378,6 +373,41 @@ How to make controller :
 
 
 
+
+
+
+
+
+
+                /*
+                =======================Laravel image genaretor ===================================
+                Just ami login korbo amar name er upor base kore image toyri hobe .
+                seita amra korbo laravolt pacage er maddhome
+
+                i. google ==> laravolt
+                ii.  command dibo ==> composer require laravolt/avatar
+                iii. add class config => app=> Laravolt\Avatar\ServiceProvider::class,
+                iv. add class ==>app==> 'Avatar'    => Laravolt\Avatar\Facade::class,
+                v. command ==> php artisan vendor:publish --provider="Laravolt\Avatar\ServiceProvider"
+
+                vi. <img src="{{ Avatar::create('Joko Widodo')->toBase64() }}" /> to ===>  src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" />
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+                */
 
 
 

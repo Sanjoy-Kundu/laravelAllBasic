@@ -12,7 +12,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets') }}/images/favicon.png" type="image/x-icon">
-    <title>Fastkart - Dashboard</title>
+    <title>AjkerDeal Laravel</title>
 
     <!-- Google font-->
     <link
@@ -139,8 +139,11 @@
                         </li>
                         <li class="profile-nav onhover-dropdown pe-0 me-0">
                             <div class="media profile-media">
-                                <img class="user-profile rounded-circle"
-                                    src="{{ asset('assets') }}/images/users/4.jpg" alt="">
+                                <img class="user-profile-rounded-circle"
+                                    src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" height="50"
+                                    width="50" />
+                                {{--    <img class="user-profile rounded-circle"
+                                    src="{{ asset('assets') }}/images/users/4.jpg" alt=""> --}}
                                 <div class="user-name-hide media-body">
                                     <span>{{ Auth::user()->name }}</span>
                                     <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
