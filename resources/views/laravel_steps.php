@@ -364,6 +364,113 @@ How to make controller :
 <img src="{{ asset('uploads/category_images') }}/{{ $category->category_image }}"
                                                             class="img-fluid" alt="">
  ===============================HOW TO USES THIRD PARTY END=========================
+
+
+
+
+
+
+
+
+
+
+
+ ==================Last Steps  How to update image in laravel ========================
+steps-01 Edit page e giye sokol information ante hobe .
+steps-02 Akta new image file nite hobe file name dite hobe and form e enctype= "multipart/formdata" likte hobe
+steps-03 ager file name and present file name akei dite hobe tahole code korte subidha hobe
+
+PHOTO Upload er step amder duita , akta hoitece jodi default image thake tahole ak dhoroner query hobe , ar jodi user image dey tahole onno dhoroner query hobe .
+
+FIRSTLY we want to check image first or secode time
+steps-04 akhon amra chole jabo category controller ee jei method er moddey image update kora jay.
+setps-05 aibar chek korbo je image ace ki na
+
+            code     if($request->hasFile('category_image')){
+                            echo "image ace";
+                        }else{
+                            echo "image nai";
+                        }
+
+akhon jodi image select kore tahole to output asbe image ace . tai akhon jehetu amr kace category_id ace tai ami sei data base e giye dekbo je image ta ki default image naki image upload korce .
+
+   if($request->hasFile('category_image')){
+            echo "image ace";
+            echo $category_id;
+            return Category::find($category_id)->category_image;
+
+        }else{
+            echo "image nai";
+        }
+
+       ********************* output e je image er name asbe sita ki default php******************
+       amader check korte hobe je jodi image er name database er default image er sathe mile jay tahole seita hoitese fist time upload and jodi na mile tahole seita second time upload hobe .
+
+            if($request->hasFile('category_image')){
+            echo "image ace";
+            echo $category_id;
+             return Category::find($category_id)->category_image;
+       $category = Category::find($category_id);
+           return $category->category_image;
+       if($category->category_image =='category_default.jpg'){
+           echo "default photo";
+       }else{
+           echo "image dewa ace its second time update dite hobe ";
+       }
+
+       }else{
+           echo "image nai";
+       }
+
+
+
+
+ ******************* =============Jodi default photo thake tahole amra just image upload kore database ke janiye dibo ====================********* jehetu amr image upload er code age lekha ace tai sei code copy korbo and kicu change korar dorkar nei karon same folder same image tai code copy kore database ke janiye dibo
+
+
+ //image part start
+            $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
+            $imagePathName = "uploads/category_images/".$imageName;
+        //watermark dewar jonno draw transparent text
+        Image::make($request->file('category_image'))->text('Sanjoy Website', 0, 0, function($font) {
+            $font->color([255, 255, 255, 0.5]);
+        })->save($imagePathName);
+        //image part end
+
+               if($request->hasFile('category_image')){
+       $category = Category::find($category_id);
+       if($category->category_image =='category_default.jpg'){
+        ******************************************************************
+        start copy code and paste
+   //===================image part start=====================
+            $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
+            $imagePathName = "uploads/category_images/".$imageName;
+        //watermark dewar jonno draw transparent text
+        Image::make($request->file('category_image'))->text('Sanjoy Website', 0, 0, function($font) {
+            $font->color([255, 255, 255, 0.5]);
+        })->save($imagePathName);
+        //==================image part end======================
+
+        //database jananor jonno
+                //database start
+                            Category::find($category_id)->update([
+                                'category_image' =>$imageName
+                            ]);
+                            //database end
+        //database e jananor joono
+       }else{
+        echo "second time";
+       }
+       }
+
+
+
+       R jodi image second time hoy taole amder delete korte hobe orthat delete korar jonno unlink korte hobe
+            echo "not first time";
+            echo $category->category_image;
+            delete korar jonno unlik korbo
+            unlink(')
+
 13.========================================Category Image Adding System  End================================
 
 

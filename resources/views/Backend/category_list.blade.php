@@ -44,7 +44,7 @@
                                                 <td>
                                                     <div class="table-image">
                                                         <img src="{{ asset('uploads/category_images') }}/{{ $category->category_image }}"
-                                                            class="img-fluid" alt="">
+                                                            class="img-fluid rounded" alt="not found" height="50">
                                                     </div>
                                                 </td>
 

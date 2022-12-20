@@ -20,7 +20,8 @@
                                     @endif
                                     {{--   <p>{{ $editCategoryInfo }}</p> --}}
                                     <form class="theme-form theme-form-2" method="POST"
-                                        action="{{ url('category/update') }}/{{ $editCategoryInfo->id }}">
+                                        action="{{ url('category/update') }}/{{ $editCategoryInfo->id }}"
+                                        enctype="multipart/form-data">
                                         @csrf
 
 
@@ -29,7 +30,6 @@
                                             <div class="col-sm-9">
                                                 <input class="form-control" type="text" placeholder="Category Name"
                                                     name="category_name" value=" {{ $editCategoryInfo->category_name }}">
-
                                             </div>
                                         </div>
 
@@ -46,9 +46,22 @@
                                             <div class="col-sm-9">
                                                 <textarea class="form-control" name="category_description" id="" rows="10"> {{ $editCategoryInfo->category_description }}</textarea>
 
-
                                             </div>
                                         </div>
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">Current Image</label>
+                                            <div class="col-sm-9">
+                                                <img src="{{ asset('uploads/category_images') }}/{{ $editCategoryInfo->category_image }}"
+                                                    alt="not found">
+                                            </div>
+                                        </div>
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">Update Image</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" class="form-control" name="category_image">
+                                            </div>
+                                        </div>
+
                                         <div class="mb-4 row align-items-center">
                                             <div class="col-sm-3"></div>
                                             <div class="col-sm-9"><button type="submit" class="btn btn-success">Add

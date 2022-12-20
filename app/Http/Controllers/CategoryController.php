@@ -53,13 +53,12 @@ class CategoryController extends Controller
             Image::make($request->file('category_image'))->text('Sanjoy Website', 0, 0, function($font) {
                 $font->color([255, 255, 255, 0.5]);
             })->save($imagePathName);
-
-
                 //image upload end
                 //database start
                 Category::find($category_image_id)->update([
                     'category_image' =>$imageName
                 ]);
+                //database end
             }
     return back()->withSuccess('Category Insert Successfully');
     }
@@ -73,6 +72,35 @@ class CategoryController extends Controller
 
 
     function updateInfo(Request $request, $category_id){
+        //image part start
+        if($request->hasFile('category_image')){
+        /*     echo "image ace";
+            echo $category_id; */
+       /*      return Category::find($category_id)->category_image; */
+            $category = Category::find($category_id);
+        /*         return $category->category_image; */
+        if($category->category_image =='category_default.jpg'){
+            //image part start
+            $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
+            $imagePathName = "uploads/category_images/".$imageName;
+        //watermark dewar jonno draw transparent text
+        Image::make($request->file('category_image'))->text('Sanjoy Website', 0, 0, function($font) {
+            $font->color([255, 255, 255, 0.5]);
+        })->save($imagePathName);
+        //image part end
+                //database start
+                Category::find($category_id)->update([
+                    'category_image' =>$imageName
+                ]);
+                //database end
+         }else{
+            echo "not first time";
+            echo $category->category_image;
+         }
+
+        }
+        die();
+        //image part end
             Category::find($category_id)->update([
                 "category_name" => $request->category_name,
                 "category_description" => $request->category_description,
