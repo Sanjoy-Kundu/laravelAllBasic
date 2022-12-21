@@ -77,9 +77,15 @@ class CategoryController extends Controller
         /*     echo "image ace";
             echo $category_id; */
        /*      return Category::find($category_id)->category_image; */
+            /*         return $category->category_image; */
             $category = Category::find($category_id);
-        /*         return $category->category_image; */
-        if($category->category_image =='category_default.jpg'){
+
+            if($category->category_image !='category_default.jpg'){
+                unlink(public_path('uploads/category_images/').$category->category_image);
+            }
+
+
+
             //image part start
             $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
             $imagePathName = "uploads/category_images/".$imageName;
@@ -88,18 +94,15 @@ class CategoryController extends Controller
             $font->color([255, 255, 255, 0.5]);
         })->save($imagePathName);
         //image part end
+
                 //database start
                 Category::find($category_id)->update([
                     'category_image' =>$imageName
                 ]);
                 //database end
-         }else{
-            echo "not first time";
-            echo $category->category_image;
-         }
 
         }
-        die();
+
         //image part end
             Category::find($category_id)->update([
                 "category_name" => $request->category_name,
@@ -110,18 +113,25 @@ class CategoryController extends Controller
     }
 
 
+
+
+    //CATEGORY DELETE
     function softDelete($category_id){
         Category::find($category_id)->delete();
         return back()->withDeleting('Category delete successfully');
     }
 
 
+
+    //CATEGORY RESTORE
     function restore($category_id){
         Category::onlyTrashed()->find($category_id)->restore();
         return back()->withTrashed('Yeah! Category restore successfully');
     }
 
 
+
+    //CATEGORY PERMANENT DELETE
     function permanentDelete($category_id){
         Category::onlyTrashed()->find($category_id)->forceDelete();
         return back()->withTrashed("Category permanent deleted successfully");

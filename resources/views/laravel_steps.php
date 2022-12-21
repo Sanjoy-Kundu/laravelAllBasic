@@ -466,10 +466,131 @@ akhon jodi image select kore tahole to output asbe image ace . tai akhon jehetu 
 
 
        R jodi image second time hoy taole amder delete korte hobe orthat delete korar jonno unlink korte hobe
+       jehetu not first time tai tumi bolo je kon photo ke ami delete korbo
             echo "not first time";
             echo $category->category_image;
             delete korar jonno unlik korbo
             unlink(')
+
+
+            tobe akhon amder route link pete hobe route link powar jonno
+            roture powar jonno amder asset er moddy link genaret korte hobe .
+
+            SYSTEM NO _01 fist
+                    echo $category->category_image;
+                    echo   asset('uploads/category_images/').$category->category_image;
+                    unlink(asset('uploads/category_images/').$category->category_image);
+                    echo "unlink done";
+
+                    aivabe dilam and output deklam output bola hoise unlink not allow akhon amder onno system dekte hobe
+
+
+                    SYSTEM -02
+                    amder akta function er moddhame korte hobe .
+                    seita hoite public_path()
+                    public_path(asset('uploads/category_images/).$category->category_image);
+                    aita dile output ee folder soho dekhabe akhon aitake unlink folder er moddey rekhe dile kaj ses mane delete hobe
+                    ai link genaret korbo
+                    unlink(public_path('uploads/category_images/').$category->category_image);
+
+                    *****************Code start ******************
+                     function updateInfo(Request $request, $category_id){
+                                                //image part start
+                                                if($request->hasFile('category_image')){
+                                                echo "image ace";
+                                                    echo $category_id;
+                                                return Category::find($category_id)->category_image;
+                                                    $category = Category::find($category_id);
+                                                    return $category->category_image;
+                                                    if($category->category_image =='category_default.jpg'){
+                                                        //image part start
+                                                        $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
+                                                        $imagePathName = "uploads/category_images/".$imageName;
+                                                    //watermark dewar jonno draw transparent text
+                                                    Image::make($request->file('category_image'))->text('Sanjoy Website', 0, 0, function($font) {
+                                                        $font->color([255, 255, 255, 0.5]);
+                                                    })->save($imagePathName);
+                                                    //image part end
+                                                            //database start
+                                                            Category::find($category_id)->update([
+                                                                'category_image' =>$imageName
+                                                            ]);
+                                                            //database end
+                                                    }else{
+                                                        echo "not first time";
+                                                        echo $category->category_image;
+                                                            echo   asset('uploads/category_images/').$category->category_image;
+                                                            echo "<br/>";
+                                                            echo public_path('upload/category_images/').$category->category_image;
+                                                            unlink(public_path('uploads/category_images/').$category->category_image);
+                                                            echo "unlik done";
+                                                    }
+                                                    }
+                                                        die();
+                                                        //image part end
+                                                            Category::find($category_id)->update([
+                                                                "category_name" => $request->category_name,
+                                                                "category_description" => $request->category_description,
+                                                            ]);
+
+                                                            return redirect('category/all');
+                                                  }
+
+                    ****************Code end ********************
+
+                    akhon unlink howar por photo delete hoye jabe and then ki hobe abar databse e photo upload hobe edit korte parbo tar jonno
+                    akhon amy akta ulta if linkte hobe
+
+
+
+
+                    code cto korbo
+
+
+
+                        function updateInfo(Request $request, $category_id){
+        //image part start
+        if($request->hasFile('category_image')){
+          echo "image ace";
+            echo $category_id;
+             return Category::find($category_id)->category_image;
+                    return $category->category_image;
+            $category = Category::find($category_id);
+
+            if($category->category_image !='category_default.jpg'){
+                unlink(public_path('uploads/category_images/').$category->category_image);
+            }
+
+
+
+            //image part start
+            $imageName = Str::lower(Str::random(20)).".".$request->file('category_image')->extension();
+            $imagePathName = "uploads/category_images/".$imageName;
+        //watermark dewar jonno draw transparent text
+        Image::make($request->file('category_image'))->text('Sanjoy Website', 0, 0, function($font) {
+            $font->color([255, 255, 255, 0.5]);
+        })->save($imagePathName);
+        //image part end
+
+                //database start
+                Category::find($category_id)->update([
+                    'category_image' =>$imageName
+                ]);
+                //database end
+
+        }
+
+        //image part end
+            Category::find($category_id)->update([
+                "category_name" => $request->category_name,
+                "category_description" => $request->category_description,
+            ]);
+
+            return redirect('category/all');
+    }
+
+
+
 
 13.========================================Category Image Adding System  End================================
 
