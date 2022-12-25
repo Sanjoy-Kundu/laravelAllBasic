@@ -590,19 +590,7 @@ akhon jodi image select kore tahole to output asbe image ace . tai akhon jehetu 
     }
 
 
-
-
 13.========================================Category Image Adding System  End================================
-
-
-                                        */
-
-
-
-
-
-
-
 
 
 
@@ -630,8 +618,8 @@ akhon jodi image select kore tahole to output asbe image ace . tai akhon jehetu 
 
 
 
-
    =====================Adding Sweet alert ====================================
+
 1. google ===> sweet alert.com ==> <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> copy kore amr page e anbo
 
 2. sweet alert er page thke link er niche script er moddey
@@ -701,6 +689,117 @@ akhon jodi image select kore tahole to output asbe image ace . tai akhon jehetu 
 
 
 
+
+
+===============================================================================================
+HOW TO MAKE  VENDOR , USERS, ADMIN
+
+What is vendor == labib group daraz plarform use kore bussniss korbe or product sell dibe. and daraz ke comission dibe . ai labib group hoitece vendor .
+
+What is Admin == admin hoitece se sokol kicu chalaite parbe . Admin er kache sokol power thakbe .
+
+User Hoitece == customer . customer ki korbe se registration kore product kinbe .
+Amin vendor ke add korte parbe . vendor tar business chaite parbe .
+
+
+
+
+Lets Play
+Now go to the user table
+seikhne giye amder kicu colum nite hobe (role) name akta colum nibo seitate bola thake ke admin ke vendor and ke customer
+and aikhane amra soft delete user korbo
+
+Lets add column
+first one is
+database ---> migration --> create_user_table seikhane giye table add korbo
+
+at first amder role add korbo
+         $table->string('role')->default('customer')->comment('admin, vendor, customer');
+         role default hobe customer and commnet e bole dilam ata admin, vendor, customer hote pare
+
+         and soft delete add korlam
+
+rollback korbo and project abr chalabo
+rollback korar age users table er batch ta bariye dibo mane databse e jabo --> migrate --> user --> batch-2
+
+akhon registration kore deklam je database e role ase customer
+
+
+
+
+
+
+
+
+HOW TO MAKE ADMIN ACCOUNT
+1. admin accoutn jog korar jonno prothome je admin accoutn thake seita developer nije toiri kore dibe .
+2. ami databaseee giye customer er jaygay akta admin likleo hobe kinto aivabe korbo na
+3. amra latavel command er maddhome admin account banabo .
+
+5. akhon ami user table ke migrate rollback korbo . rollback korbo karon amar je information ace seigulo delete kore dibo
+6. akhon ami jodi code er maddhome table data insert korte cai tahole laravel e mojar kata jinish ace seita hoitece Seeder .
+
+Akhon ai SEEDER er location kothery database --> seeders --> DatabaseSeeder.php
+muloto amara seeder user kore code korbo then command er maddhome database e push korbo .
+
+akhon ami php arisan migrate korbo  and ami chacchi database e akta data entry houk jetar role hobe admin
+setar jonno
+seps-01 php artisan kore debo je make: seeder name kono comment ace ki na
+
+steps-02 ami seeder toyri kore database e data dhukaite cai tar jonno seeder kicu hishab nikash lagbo sei hishab nikash gulo pabo kothey hishab nikash pabo laravel er documentation eee
+
+steps-03 - laravel.com --> seach (seeder)
+
+steps-04 -- # Writing Seeders --> php artisan make:seeder UserSeeder ai command dibo
+akhon dekbo -- database --> seeder --> userSeeder name akta seeder toyri hoise
+
+steps-05
+akhon Userseeder er moodey je code likbo sei code laravel documentation ee ace
+laravel.com --> search --> seeders -->
+                    DB::table('users')->insert([
+                                'name' => Str::random(10),
+                                'email' => Str::random(10).'@gmail.com',
+                                'password' => Hash::make('password'),
+                            ]);
+ai sei code jeta amra UserSeeder e likbo
+
+amra just jei bishoy tuku change korbo seita holo
+                               DB::table('users')->insert([
+                                'name' => 'admin',
+                                'email' => 'admin@gmail.com',
+                                'password' => Hash::make('123456789'),             //Database e je name ace seigula dilam r ki!
+                                'created_at' => Carbon::now(),
+                                 'role' => 'admin'
+                            ]);
+
+
+
+
+Akhon ami jodi ai code guloke chalate cai tahole amder DatabaseSeeder er kace jete hobe and seikhane giye je code likte hobe seita amder laravel documention e bola ace.
+
+database ==> seeder ==> UserSeeder e giye
+
+laravel.com theke  ==> search (seeder)
+# Calling Additional Seeders
+  $this->call([
+        UserSeeder::class,
+        PostSeeder::class,
+        CommentSeeder::class,
+    ]);
+
+    theke just
+       $this->call([
+            UserSeeder::class,
+        ]);
+        rakbo
+
+
+FINALLY JE COMMAD DILE CODE DHUKE JABE SEITA HOLO
+Laravel.com ==> search(seeder) ==>
+# Running Seeders
+php artisan db:seed
+
+==================================================================================================
                 */
 
 

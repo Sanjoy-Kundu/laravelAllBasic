@@ -26,10 +26,11 @@
                                     <thead>
                                         <tr>
                                             <th>Category Name</th>
-                                            <th>Date</th>
                                             <th>Category Image</th>
                                             <th>Slug</th>
                                             <th>Description</th>
+                                            <th>Creation Date</th>
+                                            <th>Update Date</th>
                                             <th>Option</th>
                                         </tr>
                                     </thead>
@@ -38,9 +39,6 @@
                                         @forelse ($all_categories as $category)
                                             <tr>
                                                 <td>{{ $category->category_name }}</td>
-
-                                                <td>26-12-2021</td>
-
                                                 <td>
                                                     <div class="table-image">
                                                         <img src="{{ asset('uploads/category_images') }}/{{ $category->category_image }}"
@@ -51,7 +49,8 @@
                                                 <td>{{ $category->slug }}</td>
 
                                                 <td>{{ $category->category_description }}</td>
-
+                                                <td>{{ $category->created_at->diffForHumans() }}</td>
+                                                <td>{{ $category->updated_at }}</td>
                                                 <td>
                                                     <ul>
                                                         <li>

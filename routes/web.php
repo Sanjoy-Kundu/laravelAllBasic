@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\categoryCotroller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('/', function () {
+/*  Route::get('/', function () {
     return view('welcome');
-});
+}); */
+Route::get('/', [UserController::class, 'index']);
+
+
+
+
+
 /*  Route::get("/welcome", BackendController::class, 'welcome'); */
 Route::get('dashboard',[BackendController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -27,6 +33,10 @@ Route::get('dashboard',[BackendController::class, 'dashboard'])->middleware(['au
 //Backend Controller
 Route::get('category/all', [BackendController::class, 'category']);
 Route::get('category/add', [BackendController::class, 'addCategory']);
+Route::get('users/all', [BackendController::class, 'allUsers']);
+Route::get('add/newUser', [BackendController::class, 'addUser']);
+
+
 
 //Category
 Route::post('category/insert', [CategoryController::class, 'insert']);
@@ -36,6 +46,10 @@ Route::get('category/delete/{category_id}', [CategoryController::class, 'softDel
 Route::get('category/restore/{category_id}', [CategoryController::class, 'restore']);
 Route::get('category/permanent/delete/{category_id}', [CategoryController::class, 'permanentDelete']);
 
+
+
+//User
+Route::get('user/insert', [UserController::class, 'insert']);
 
 
 Route::middleware('auth')->group(function () {

@@ -145,8 +145,9 @@
                                 {{--    <img class="user-profile rounded-circle"
                                     src="{{ asset('assets') }}/images/users/4.jpg" alt=""> --}}
                                 <div class="user-name-hide media-body">
-                                    <span>{{ Auth::user()->name }}</span>
-                                    <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
+                                    <span>{{ auth()->user()->name }}</span>
+                                    <p class="mb-0 font-roboto">{{ auth()->user()->role }}<i
+                                            class="middle ri-arrow-down-s-line"></i></p>
                                 </div>
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
@@ -277,20 +278,23 @@
                                     </ul>
                                 </li>
 
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-user-3-line"></i>
-                                        <span>Users</span>
-                                    </a>
-                                    <ul class="sidebar-submenu">
-                                        <li>
-                                            <a href="all-users.html">All users</a>
-                                        </li>
-                                        <li>
-                                            <a href="add-new-user.html">Add new user</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                @if (auth()->user()->role == 'admin')
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                            <i class="ri-user-3-line"></i>
+                                            <span>Users</span>
+                                        </a>
+                                        <ul class="sidebar-submenu">
+                                            <li>
+                                                <a href="{{ url('users/all') }}">All users</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('add/newUser') }}">Add new user</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endif
+
                                 <li class="sidebar-list">
                                     <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-archive-line"></i>
