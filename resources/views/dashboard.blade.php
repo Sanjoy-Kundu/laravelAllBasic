@@ -38,6 +38,57 @@
                     </div>
                 </div>
 
+                @php
+                    $user_collect = collect($all_users);
+                @endphp
+                <div class="col-sm-6 col-xxl-3 col-lg-6">
+                    <div class="main-tiles border-5 border-0  card-hover card o-hidden">
+                        <div class="custome-1-bg b-r-4 card-body">
+                            <div class="media align-items-center static-top-widget">
+                                <div class="media-body p-0">
+                                    <span class="m-0">Total Admin</span>
+                                    <h4 class="mb-0 counter">{{ $user_collect->where('role', 'admin')->count() }} </h4>
+                                </div>
+                                <div class="align-self-center text-center">
+                                    <i class="ri-database-2-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xxl-3 col-lg-6">
+                    <div class="main-tiles border-5 border-0  card-hover card o-hidden">
+                        <div class="custome-1-bg b-r-4 card-body">
+                            <div class="media align-items-center static-top-widget">
+                                <div class="media-body p-0">
+                                    <span class="m-0">Total Customers</span>
+                                    <h4 class="mb-0 counter">{{ $user_collect->where('role', 'customer')->count() }} </h4>
+                                </div>
+                                <div class="align-self-center text-center">
+                                    <i class="ri-database-2-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xxl-3 col-lg-6">
+                    <div class="main-tiles border-5 border-0  card-hover card o-hidden">
+                        <div class="custome-1-bg b-r-4 card-body">
+                            <div class="media align-items-center static-top-widget">
+                                <div class="media-body p-0">
+                                    <span class="m-0">Total Vendors</span>
+                                    <h4 class="mb-0 counter">{{ $user_collect->where('role', 'vendor')->count() }} </h4>
+                                </div>
+                                <div class="align-self-center text-center">
+                                    <i class="ri-database-2-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-sm-6 col-xxl-3 col-lg-6">
                     <div class="main-tiles border-5 card-hover border-0 card o-hidden">
                         <div class="custome-2-bg b-r-4 card-body">

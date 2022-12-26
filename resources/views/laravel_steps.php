@@ -857,6 +857,40 @@ Password Genarate
 
     form fill kore database e pathalam kinto password encrypted hoy nai
     password encrypted korar jonno laravel ee bycryt name akta function ace
+====================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============================================================================================
+Akhon amr Dashboard e dekhate hobe koyta vendor koyta customer and koyjon user ace  .
+
+Seita korar jonno
+    first e amder collect korte hobe obbosho php code er moddey likte hobe .
+
+    @php
+        $user_collect = collect($all_user);
+        @endphp
+
+        and koto jon customer ace seita dekhanor jonno
+        {{ $user_collect->where('role', 'customer')->count() }}
+
+        koto jon vendor ace seita dekhanot jonno
+         {{ $user_collect->where('role', 'vendor')->count() }}
+
+
+         kotojon admin ace seita dekhanor jonno
+          {{ $user_collect->where('role', 'admin')->count() }}
+
                 */
 
 
