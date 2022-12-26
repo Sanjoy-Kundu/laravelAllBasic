@@ -800,6 +800,63 @@ Laravel.com ==> search(seeder) ==>
 php artisan db:seed
 
 ==================================================================================================
+
+
+
+
+
+
+
+
+
+==================================================================================================
+Adding Vendor or Amin
+add new user e form banabo
+then seitake insert korbo
+image er je file dibo seita kaj hoitece image dileo code kaj korbe na dileo kaj korbe
+
+Image er jonno
+At first amader database e image dhukaite hobe tar jonno
+create_user e jabo
+$table->text('profile_photo')->nullable();
+profile name boro hoy dekhe amra text diye dilam
+image faka hoile hobe nullable r image dile kaj korbe
+
+
+jehetu image field ke database dhukaite hobe tai migrate rollback marte hobe
+
+
+Amra je admin ba vendor banabo tar je password asbe seita randomly ase and database e auto genaret hobe .
+tar mane age amake random password banate hobe
+
+Password Genarate
+
+    function insert(Request $request){
+     return $request;
+
+      return Str::upper(Str::random(8));
+    }
+
+
+
+    insert code
+                    function insert(Request $request){
+     // return $request;
+       $user_genaret_password =  Str::upper(Str::random(8));
+
+       User::insert([
+        'name' =>$request->name,
+        'email' =>$request->email,
+        'password' =>$user_genaret_password,
+         'password' =>bcrypt($user_genaret_password), //encrypted korar jonno
+        'created_at' => Carbon::now(),
+        'role' => $request->role
+       ]);
+       return back();
+    }
+
+    form fill kore database e pathalam kinto password encrypted hoy nai
+    password encrypted korar jonno laravel ee bycryt name akta function ace
                 */
 
 

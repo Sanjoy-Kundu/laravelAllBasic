@@ -22,6 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('role')->default('customer')->comment('admin, vendor, customer');
+            $table->text('profile_photo')->nullable();
             $table->softDeletes();
 
         });

@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 }); */
 Route::get('/', [UserController::class, 'index']);
+Route::post('user/insert', [UserController::class, 'insert']);
 
 
 

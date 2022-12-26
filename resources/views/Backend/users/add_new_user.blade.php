@@ -43,13 +43,26 @@
                                             </div>
                                         </div>
 
-                                        {{--  <div class="mb-4 row align-items-center">
-                                            <label class="col-sm-3 col-form-label form-label-title">Category
-                                                Image</label>
-                                            <div class="form-group col-sm-9">
-                                                <input type="file" class="form-control" name="category_image">
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">Role</label>
+                                            <div class="col-sm-9">
+                                                <select name="role" class="form-control">
+                                                    <option value="">---select option--</option>
+                                                    <option value="admin">Admin</option>
+                                                    <option value="vendor">Vendor</option>
+                                                </select>
+                                                {{-- @error('category_name')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror --}}
                                             </div>
-                                        </div> --}}
+                                        </div>
+
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="col-sm-3 col-form-label form-label-title">Photo</label>
+                                            <div class="form-group col-sm-9">
+                                                <input type="file" class="form-control" name="profile_photo">
+                                            </div>
+                                        </div>
 
                                         <div class="mb-4 row align-items-center">
                                             <div class="col-sm-3"></div>
