@@ -27,9 +27,9 @@
                                             <div class="col-sm-9">
                                                 <input class="form-control" type="text" placeholder="User Name"
                                                     name="name" value="{{ old('name') }}">
-                                                {{-- @error('category_name')
+                                                @error('name')
                                                     <span class="text-danger">{{ $message }}</span>
-                                                @enderror --}}
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="mb-4 row align-items-center">
@@ -37,9 +37,9 @@
                                             <div class="col-sm-9">
                                                 <input class="form-control" type="email" placeholder="User Email"
                                                     name="email">
-                                                {{-- @error('category_name')
+                                                @error('email')
                                                     <span class="text-danger">{{ $message }}</span>
-                                                @enderror --}}
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -51,9 +51,9 @@
                                                     <option value="admin">Admin</option>
                                                     <option value="vendor">Vendor</option>
                                                 </select>
-                                                {{-- @error('category_name')
+                                                @error('role')
                                                     <span class="text-danger">{{ $message }}</span>
-                                                @enderror --}}
+                                                @enderror
                                             </div>
                                         </div>
 

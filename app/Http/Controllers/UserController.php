@@ -22,6 +22,19 @@ class UserController extends Controller
 
     function insert(Request $request){
      // return $request;
+        $request->validate([
+            'name' => 'required | max:25',
+            'email' => 'required',
+            'role' => 'required'
+        ],
+    [
+        "name.required" => "Name field is required",
+        'name.max' => "Name must be 25 characters",
+        'email.required' => "Email field is required",
+        'role.required' => 'User Role is required'
+    ]);
+
+
        $user_genaret_password =  Str::upper(Str::random(8));
 
        User::insert([
@@ -31,6 +44,6 @@ class UserController extends Controller
         'created_at' => Carbon::now(),
         'role' => $request->role
        ]);
-       return back();
+       return back()->withSuccess('User Information inserted Successfully');
     }
 }

@@ -31,8 +31,8 @@ class CategoryController extends Controller
 
 
     $slug = Str::slug($request->category_name, '-');
-    $category_image_id = Category::insertGetId($request->except('_token') + [
-        'slug' => $slug,
+    $category_image_id = Category::insertGetId($request->except('_token') +
+     [ 'slug' => $slug,
         'created_at' => Carbon::now()]);
 
 
