@@ -891,6 +891,40 @@ Seita korar jonno
          kotojon admin ace seita dekhanor jonno
           {{ $user_collect->where('role', 'admin')->count() }}
 
+
+
+
+
+          Last Steps user from validatoin koralam jeita diye admin and vendor amra banabo
+          User Controller ee
+
+              function insert(Request $request){
+     // return $request;
+        $request->validate([
+            'name' => 'required | max:25',
+            'email' => 'required',
+            'role' => 'required'
+        ],
+    [
+        "name.required" => "Name field is required",
+        'name.max' => "Name must be 25 characters",
+        'email.required' => "Email field is required",
+        'role.required' => 'User Role is required'
+    ]);
+
+
+       $user_genaret_password =  Str::upper(Str::random(8));
+
+       User::insert([
+        'name' =>$request->name,
+        'email' =>$request->email,
+        'password' =>bcrypt($user_genaret_password),
+        'created_at' => Carbon::now(),
+        'role' => $request->role
+       ]);
+       return back()->withSuccess('User Information inserted Successfully');
+    }
+
                 */
 
 
